@@ -293,7 +293,7 @@
 <section class="section reveal">
   <span class="section-label">Algunos de nuestros arroces</span>
   <div style="position:relative;width:100%;max-width:400px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(209,174,33,0.1);box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-    <video id="vid1" src="video1.mp4" loop playsinline muted style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
+    <video id="vid1" src="video1.mp4" loop playsinline muted preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
     <div id="vid1-overlay" onclick="playVideo('vid1')" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.3);transition:opacity 0.3s;">
       <div style="width:64px;height:64px;border-radius:50%;background:rgba(209,174,33,0.9);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(209,174,33,0.4);">
         <svg viewBox="0 0 24 24" fill="#0a0a0a" style="width:28px;height:28px;margin-left:4px;"><path d="M8 5v14l11-7z"/></svg>
@@ -324,7 +324,7 @@
 <section class="section reveal">
   <span class="section-label">Nuestros clientes opinan</span>
   <div style="position:relative;width:100%;max-width:400px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(209,174,33,0.1);box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-    <video id="vid2" src="video2.mp4" loop playsinline style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
+    <video id="vid2" src="video2.mp4" loop playsinline muted preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
     <div id="vid2-overlay" onclick="playVideo('vid2')" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.3);transition:opacity 0.3s;">
       <div style="width:64px;height:64px;border-radius:50%;background:rgba(209,174,33,0.9);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(209,174,33,0.4);">
         <svg viewBox="0 0 24 24" fill="#0a0a0a" style="width:28px;height:28px;margin-left:4px;"><path d="M8 5v14l11-7z"/></svg>
@@ -348,7 +348,7 @@
 <section class="section reveal">
   <span class="section-label">Así lo hacemos</span>
   <div style="position:relative;width:100%;max-width:400px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid rgba(209,174,33,0.1);box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-    <video id="vid3" src="video3.mp4" loop playsinline style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
+    <video id="vid3" src="video3.mp4" loop playsinline muted preload="metadata" style="width:100%;display:block;aspect-ratio:9/16;object-fit:cover;"></video>
     <div id="vid3-overlay" onclick="playVideo('vid3')" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,0.3);transition:opacity 0.3s;">
       <div style="width:64px;height:64px;border-radius:50%;background:rgba(209,174,33,0.9);display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(209,174,33,0.4);">
         <svg viewBox="0 0 24 24" fill="#0a0a0a" style="width:28px;height:28px;margin-left:4px;"><path d="M8 5v14l11-7z"/></svg>
@@ -606,6 +606,13 @@ function playVideo(id) {
   overlay.style.opacity = '0';
   overlay.style.pointerEvents = 'none';
 }
+
+['vid1','vid2','vid3'].forEach(function(id) {
+  var v = document.getElementById(id);
+  v.addEventListener('loadedmetadata', function() {
+    v.currentTime = 0.01;
+  });
+});
 </script>
 </body>
 </html>
